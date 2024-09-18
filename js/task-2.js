@@ -26,16 +26,10 @@ const images = [
 ];
 
 const gallery = document.querySelector('.gallery');
-const imageItems = images.map((element) => {
-  const item = document.createElement('li');
-  gallery.append(item);
-  const imageItem = document.createElement('img');
-  item.append(imageItem);
-  imageItem.setAttribute("src", element.url);
-  imageItem.setAttribute("alt", element.alt);
-  imageItem.style.width = "300px";
-  imageItem.style.height = "200px";
-  //img.style.display = "flex";
-});
 
-console.log(gallery);
+const imageItems = images.map(({ url, alt }) => `<li>
+        <img src="${url}" alt="${alt}" width='300' height='200'>
+      </li>`
+).join('');
+
+gallery.insertAdjacentHTML("beforeend", imageItems);
